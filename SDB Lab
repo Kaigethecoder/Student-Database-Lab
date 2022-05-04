@@ -1,0 +1,120 @@
+public class MyProgram
+{
+
+    public static void Main()
+    {
+        //Task: Write program that will recognize inputs when the user requests information about students in a class.
+        //Create 3 arrays and fill them with student info- one with name, one with hometown, one with favorite food.
+        //Prompt user to ask about a particular student by number.  convert input to an integer, use int as index for arrays. print student's name
+        // ask user which category to display: hometown or favorite food. then display relevant info
+        //validate user number. if statement to check if # is out of range, i.e. either less than 0 or greater than max index of arrays.  If so, "try again"
+        // validate category: ask what info to display: hometown or favorite food, use if statement to check they entered either category name correctly.  If they didn't, re- ask?
+        //Array Length: use first array's length property in your code instead of hardcoding it
+
+
+        string[] names = new string[] {   "Kaige",      "Greg", "Amanda",    "Talon",    "Kelly",    "Hussein",  "Christy" };
+        string[] favFood = new string[] { "pizza",    "hotdogs", "wings",  "popsicles", "icecream",  "burgers",     "candy" };
+        string[] hometown = new string[] {"Phoenix", "Detroit", "Lansing", "Egypt",    "Hollywood",   "Paris",      "Rome" };
+        bool nameNo = true;
+        bool another = true;
+        bool category = true;
+        int studentName = 0;
+        Console.WriteLine("Welcome to the student database!");
+        Console.WriteLine("Here you can access student's names, as well as their favorite food and hometown.");
+        
+        do 
+        {
+            Console.WriteLine("Would you like to see a list of the students names in order before we begin? y/n");
+            string allNames = Console.ReadLine();
+            if (allNames == "y")
+            {
+                Console.WriteLine("Okay, here are the students in order as you requested:");
+                Console.WriteLine(ListNames());
+                Console.WriteLine("Okay. Now, let's begin");
+                
+            }
+            else
+            {
+                Console.WriteLine("Okay.  Now, lets' begin.");
+            }
+
+            
+
+            Console.WriteLine("Pick between student 1 to 7 to learn more about them!");
+                studentName = int.Parse(Console.ReadLine()) - 1;
+                if (studentName > 0 && studentName < names.Length)
+                {
+                    Console.WriteLine($"You chose {names[studentName]}");
+                    nameNo = true;
+                }
+                else
+                {
+                    Console.WriteLine($"Sorry, this is out of range. Please pick a number from 1 to {names.Length}.");
+                    nameNo = false;
+                }
+            
+
+            if (nameNo)
+            {
+                do
+                {
+
+                    Console.WriteLine("Which category would you like to see? Enter either 'Hometown' or 'Favorite food'. (case sensitive)");
+                    string studentCategory = Console.ReadLine();
+                    if (studentCategory == "Hometown")
+                    {
+                        Console.WriteLine($"{names[studentName]} is from {hometown[studentName]}.");
+                        category = false;
+                    }
+                    else if (studentCategory == "Favorite food")
+                    {
+                        Console.WriteLine($"{names[studentName]}'s favorite food is {favFood[studentName]}.");
+                        category = false;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Sorry, that is not valid.  Try again");
+                        category = true;
+                    }
+                }
+                while (category);
+
+                if (category == false)
+                {
+
+                    Console.WriteLine("Would you like to learn about another student? y/n");
+                    string repeatChoice = Console.ReadLine();
+
+                    if (repeatChoice == "y")
+                    {
+                        another = true;
+                    }
+                    else
+                    {
+                        another = false;
+                    }
+                }
+
+            }
+
+        }
+        while (another);
+
+        Console.WriteLine("Goodbye!");
+
+;
+       
+    }
+
+    public static string ListNames()
+    {
+        string[] names = new string[] { "Kaige", "Greg", "Amanda", "Talon", "Kelly", "Hussein", "Christy" };
+        for (int i = 0; i < names.Length; i++)
+        {
+            Console.WriteLine($"{names[i]}");
+        }
+        return null;
+    }
+
+    
+}
